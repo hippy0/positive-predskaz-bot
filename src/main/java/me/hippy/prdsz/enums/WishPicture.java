@@ -14,7 +14,8 @@ public enum WishPicture {
 
     BROKEN_HEART_FROG("broken-frog.jpg"),
     RAINY_FROG("rainy-frog.jpg"),
-    SLEEPY_FROG("sleepy-frog.jpg"),;
+    SLEEPY_FROG("sleepy-frog.jpg"),
+    LUCKY_FROG("lucky-frog.jpg");
 
     private final String path;
 }

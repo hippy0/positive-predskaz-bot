@@ -6,6 +6,10 @@ telegram:
   secret:
     token: '${POSITIVE_PREDSKAZ_BOT_TOKEN:muted}'
     username: '${POSITIVE_PREDSKAZ_BOT_USERNAME:muted}'
+  # TelegramID пользователя создателя бота. При старте с параметром telegram.first-init: true
+  # (а так-же каждый период указанный в telegram.pictures.reset-file-id.cron) начнет отправлять
+  # фотографии для кеширования в чат с указанным пользователем (костыль)
+  authorId: muted
 
 general:
   hello-message: 'Привет! Я — бот предсказатель, в основном стараюсь поддержать тебя и зарядить позитивом (но и ногда могу и удивить 🤭)
@@ -20,7 +24,6 @@ spring:
     url: ${POSTGRES_URL:muted}
   jpa:
     database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
 

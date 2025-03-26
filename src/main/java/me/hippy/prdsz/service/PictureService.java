@@ -33,7 +33,7 @@ public class PictureService {
         File createdFile;
 
         try {
-            int y = 100;
+            int y = 130;
             File file = Path.of(path, wish.getWishPicture().getPath()).toAbsolutePath().toFile();
 
             BufferedImage bufferedImage = ImageIO.read(file);
@@ -51,7 +51,7 @@ public class PictureService {
                 }
 
                 graphics.drawString(str, 20, y);
-                y += 40;
+                y += 25;
             }
 
             createdFile = new File(file.getAbsolutePath().replace(
@@ -77,8 +77,46 @@ public class PictureService {
     }
 
     public String insert(String text, String insert, int period) {
-        Pattern p = Pattern.compile("(.*" + period + "})", Pattern.DOTALL);
-        Matcher m = p.matcher(text);
-        return m.replaceAll("$1" + insert);
+        char[] chars = text.toCharArray();
+        StringBuilder result = new StringBuilder();
+        boolean swap = false;
+        int current = 0;
+
+        for (int i = 0; i < chars.length; i++) {
+            current++;
+
+            if (i != 0 && i % period == 0 && chars[i] == ' ') {
+                result.append(insert);
+                continue;
+            }
+
+            if (swap && chars[i] == ' ') {
+                swap = false;
+                result.append(insert);
+                current = 0;
+                continue;
+            }
+
+            if (i != 0 && i % period == 0.0 && chars[i] != ' ') {
+                result.append(chars[i]);
+                swap = true;
+                continue;
+            }
+
+            int periodToMuch = period + 3;
+            if (current > periodToMuch && swap && Pattern.matches("[а-яА-Я]", String.valueOf(chars[i]))) {
+                swap = false;
+                result.append(chars[i])
+                        .append("-")
+                        .append(insert)
+                        .append("-");
+                current = 0;
+                continue;
+            }
+
+            result.append(chars[i]);
+        }
+
+        return result.toString();
     }
 }
