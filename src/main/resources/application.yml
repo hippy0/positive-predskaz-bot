@@ -1,0 +1,33 @@
+telegram:
+  first-init: ${FIRST_INIT:true}
+  pictures:
+    reset-file-id:
+      cron: '0 0 1 * * ?'
+  secret:
+    token: '${POSITIVE_PREDSKAZ_BOT_TOKEN:muted}'
+    username: '${POSITIVE_PREDSKAZ_BOT_USERNAME:muted}'
+
+general:
+  hello-message: 'Привет! Я — бот предсказатель, в основном стараюсь поддержать тебя и зарядить позитивом (но и ногда могу и удивить 🤭)
+
+  Я умею гадать прямо тут, в личных сообщениях по команде /wish, но гораздо лучше и веселее вызывать меня в групповых чатах при помощи @PositivePredskazBot .'
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: ${POSTGRES_PASSWORD:muted}
+    url: ${POSTGRES_URL:muted}
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org:
+      springframework:
+        web: error
+    root: info
+    web: info
