@@ -14,4 +14,4 @@ RUN ./gradlew --no-daemon build
 
 ENV JAVA_OPTS "-Xmx512M -Xms512M"
 
-CMD java -jar "./build/libs/predskazbutpositive-1.3.8.jar"
+CMD java -jar "./build/libs/predskazbutpositive-1.4.0.jar"

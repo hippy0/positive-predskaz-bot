@@ -17,6 +17,7 @@ public class UserRole {
     private Long id;
 
     @Column(nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     private UserRoleKey key;
 
     @OneToMany(mappedBy = "userRole", fetch = FetchType.LAZY)
